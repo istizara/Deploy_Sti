@@ -35,8 +35,8 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🌿 Dashboard  Prediksi Penyakit Pada Daun Jagung")
-st.write("Aplikasi .")
+st.title("🌿 Prediksi Penyakit Pada Daun Jagung")
+st.write("...")
 
 menu = st.sidebar.selectbox("Pilih Mode:", ["Deteksi Objek (YOLO)", "Klasifikasi Gambar"])
 
