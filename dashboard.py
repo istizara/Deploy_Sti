@@ -42,7 +42,6 @@ st.write("...")
 st.set_page_config(page_title="Object Detection App", layout="wide")
 
 bg_image_path = "background.jpg"  # Adjust path as needed
-bg_image_encoded = get_base64_image(bg_image_path)
 
 menu = st.sidebar.selectbox("Pilih Mode:", ["Deteksi Objek (YOLO)", "Klasifikasi Gambar"])
 
