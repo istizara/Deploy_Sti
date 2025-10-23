@@ -38,6 +38,17 @@ st.set_page_config(
 st.title("🌿 Prediksi Penyakit Pada Daun Jagung")
 st.write("...")
 
+# Page config
+st.set_page_config(page_title="Object Detection App", layout="wide")
+
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        encoded = base64.b64encode(img_file.read()).decode()
+    return encoded
+
+bg_image_path = "img.jpg"  # Adjust path as needed
+bg_image_encoded = get_base64_image(bg_image_path)
+
 menu = st.sidebar.selectbox("Pilih Mode:", ["Deteksi Objek (YOLO)", "Klasifikasi Gambar"])
 
 uploaded_file = st.file_uploader("Unggah Gambar", type=["jpg", "jpeg", "png"])
