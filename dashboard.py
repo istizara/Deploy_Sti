@@ -41,11 +41,6 @@ st.write("...")
 # Page config
 st.set_page_config(page_title="Object Detection App", layout="wide")
 
-def get_base64_image(image_path):
-    with open(image_path, "rb") as img_file:
-        encoded = base64.b64encode(img_file.read()).decode()
-    return encoded
-
 bg_image_path = "background.jpg"  # Adjust path as needed
 bg_image_encoded = get_base64_image(bg_image_path)
 
