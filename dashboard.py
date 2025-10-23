@@ -46,7 +46,7 @@ def get_base64_image(image_path):
         encoded = base64.b64encode(img_file.read()).decode()
     return encoded
 
-bg_image_path = "img.jpg"  # Adjust path as needed
+bg_image_path = "background.jpg"  # Adjust path as needed
 bg_image_encoded = get_base64_image(bg_image_path)
 
 menu = st.sidebar.selectbox("Pilih Mode:", ["Deteksi Objek (YOLO)", "Klasifikasi Gambar"])
