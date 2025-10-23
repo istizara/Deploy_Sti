@@ -20,7 +20,23 @@ yolo_model, classifier = load_models()
 # ==========================
 # UI
 # ==========================
-st.title("🧠 Image Classification & Object Detection App")
+
+color_samples = [
+    (255, 255, 0),   # Yellow – bright and contrasts well with black
+    (0, 255, 255),   # Cyan – highly visible, clean contrast
+    (255, 200, 100), # Light orange – warm and readable
+    (180, 255, 180), # Pale green – soft and effective
+    (255, 128, 255), # Light magenta – vibrant but not dark
+]
+
+st.set_page_config(
+    page_title="Dashboard Prediksi Gambar",
+    page_icon="🌿",
+    layout="wide"
+)
+
+st.title("🌿 Dashboard  Prediksi Penyakit Pada Daun Jagung")
+st.write("Aplikasi .")
 
 menu = st.sidebar.selectbox("Pilih Mode:", ["Deteksi Objek (YOLO)", "Klasifikasi Gambar"])
 
