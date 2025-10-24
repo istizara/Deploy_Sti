@@ -30,14 +30,17 @@ def object_detection_page():
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
 
+        # Tombol di atas gambar
+        run_detection = st.button("🔍 Jalankan Deteksi")
+
         # Buat dua kolom sejajar
         col1, col2 = st.columns(2)
 
         with col1:
             st.image(image, caption="🖼️ Gambar Asli", use_container_width=True)
 
-        # Tombol Deteksi
-        if st.button("🔍 Jalankan Deteksi"):
+        # Jika tombol ditekan
+        if run_detection:
             with st.spinner("Model sedang memproses gambar... ⏳"):
                 # Simpan file upload sementara
                 temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg")
@@ -57,17 +60,8 @@ def object_detection_page():
                 with col2:
                     st.image(result_image, caption="📊 Hasil Deteksi", use_container_width=True)
 
-                # Tampilkan detail deteksi
-                st.subheader("📋 Detail Deteksi")
-                for box in results[0].boxes:
-                    cls = int(box.cls)
-                    label = results[0].names[cls]
-                    conf = float(box.conf)
-                    st.markdown(f"- **{label}** dengan confidence **{conf*100:.1f}%**")
-
                 # Bersihkan file sementara
                 os.remove(temp_file.name)
-
 
 # ==========================
 # Jalankan fungsi agar halaman tampil
