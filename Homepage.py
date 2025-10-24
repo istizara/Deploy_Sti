@@ -17,34 +17,53 @@ def hero_section():
     st.markdown(
         """
         <style>
+        .stApp {
+            background-color: #abbe99;
+            background-attachment: fixed;
+            background-size: cover;
+        }
         .hero {
             text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #daf7a6, #c2f0a3);
-            border-radius: 20px;
+            padding: 70px 20px;
+            background: rgba(255, 255, 255, 0.45); /* putih transparan 45% */
+            border-radius: 25px;
+            width: 80%;
+            margin: 60px auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
         .hero h1 {
-            font-size: 3em;
-            color: #2e7d32;
-            font-weight: bold;
+            font-size: 2.5em;
+            color: #1b3d1b;
+            font-weight: 800;
+            margin-bottom: 10px;
         }
         .hero p {
-            font-size: 1.2em;
-            color: #33691e;
-            margin-top: 10px;
+            font-size: 1.1em;
+            color: #2b472b;
+            margin-top: 0;
         }
+        
         .btn-start {
-            background-color: #abbe99;
-            color: soft green;
+            display: inline-block;
+            background-color: #7c9960;
+            color: white;
             padding: 0.6em 1.5em;
             border-radius: 10px;
             text-decoration: none;
             font-size: 1em;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-start:hover {
+            background-color: #68804f;
         }
         </style>
+
         <div class='hero'>
-            <h1>🌽 Corn Disease Detection Dashboard for Smart Farming </h1>
-            <p>Deteksi dan klasifikasi penyakit daun jagung secara otomatis menggunakan AI🤖</p>
+            <h1>🌽 Corn Disease Detection Dashboard for Smart Farming</h1>
+            <p>Deteksi dan klasifikasi penyakit daun jagung secara otomatis menggunakan AI 🤖</p>
         """,
         unsafe_allow_html=True
     )
