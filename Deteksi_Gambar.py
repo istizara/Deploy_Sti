@@ -29,7 +29,12 @@ def object_detection_page():
 
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
-        st.image(image, caption="🖼️ Gambar yang diunggah", use_column_width=True)
+
+        # Buat dua kolom sejajar
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.image(image, caption="🖼️ Gambar Asli", use_container_width=True)
 
         # Tombol Deteksi
         if st.button("🔍 Jalankan Deteksi"):
@@ -48,8 +53,9 @@ def object_detection_page():
                 # Konversi hasil ke format RGB untuk Streamlit
                 result_image = cv2.cvtColor(result_image, cv2.COLOR_BGR2RGB)
 
-                # Tampilkan hasil
-                st.image(result_image, caption="📊 Hasil Deteksi", use_column_width=True)
+                # Tampilkan hasil di kolom kedua
+                with col2:
+                    st.image(result_image, caption="📊 Hasil Deteksi", use_container_width=True)
 
                 # Tampilkan detail deteksi
                 st.subheader("📋 Detail Deteksi")
@@ -61,6 +67,7 @@ def object_detection_page():
 
                 # Bersihkan file sementara
                 os.remove(temp_file.name)
+
 
 # ==========================
 # Jalankan fungsi agar halaman tampil
