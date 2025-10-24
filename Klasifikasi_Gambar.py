@@ -1,60 +1,71 @@
 import streamlit as st
-import tensorflow as tf
-from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
-import numpy as np
+from tensorflow.keras.preprocessing import image
 from PIL import Image
+import numpy as np
 
-# =====================================
-# 🔧 Load model (.h5)
-# =====================================
-MODEL_PATH = "model/Isti_Laporan 2.h5"
+# ==========================
+# 🔧 Load Model
+# ==========================
+MODEL_PATH = "Isti_Laporan_2.h5"
 model = load_model(MODEL_PATH)
 
-# Daftar label kelas (ubah sesuai model kamu)
+# Daftar label kelas 
 CLASS_NAMES = ["Blight", "Common Rust", "Gray Leaf Spot", "Healthy"]
 
-# =====================================
-# 🌿 Sidebar Klasifikasi Gambar
-# =====================================
-def klasifikasi_gambar_sidebar():
-    st.sidebar.title("🧠 Klasifikasi Gambar Daun Jagung")
+# ==========================
+# 🌿 Fungsi Klasifikasi
+# ==========================
+def klasifikasi_gambar(img):
+    """Preprocessing"""
+    input_shape = model.input_shape[1:3]  # contoh (224, 224)
+    img_resized = img.resize(input_shape)
+    img_array = image.img_to_array(img_resized)
+    img_array = np.expand_dims(img_array, axis=0)
+    img_array = img_array.astype("float32") / 255.0
 
-    uploaded_file = st.sidebar.file_uploader(
-        "📤 Unggah gambar daun jagung...", type=["jpg", "jpeg", "png"]
-    )
+    # Prediksi
+    prediction = model.predict(img_array)
+    class_index = int(np.argmax(prediction))
+    confidence = float(np.max(prediction))
+    return CLASS_NAMES[class_index], confidence
+
+# ==========================
+# 🌽 Aplikasi Streamlit
+# ==========================
+def main():
+    st.title("🧠 Klasifikasi Penyakit Daun Jagung")
+
+    # Sidebar upload
+    st.sidebar.header("📤 Upload Gambar")
+    uploaded_file = st.sidebar.file_uploader("Pilih gambar...", type=["jpg", "jpeg", "png"])
 
     if uploaded_file is not None:
-        # Tampilkan gambar yang diunggah
-        image_pil = Image.open(uploaded_file).convert("RGB")
-        st.image(image_pil, caption="🖼️ Gambar yang diunggah", use_container_width=True)
+        img = Image.open(uploaded_file).convert("RGB")
 
-        # Tombol klasifikasi
-        if st.button("🔍 Jalankan Klasifikasi"):
+        # Tampilkan gambar di halaman utama
+        st.image(img, caption="🖼️ Gambar yang diunggah", use_container_width=True)
+
+        # Tombol untuk klasifikasi
+        if st.sidebar.button("🔍 Jalankan Klasifikasi"):
             with st.spinner("Model sedang memproses gambar... ⏳"):
-                # ===============================
-                # Preprocessing gambar
-                # ===============================
-                img = image_pil.resize((224, 224))  # sesuaikan ukuran input model
-                img_array = image.img_to_array(img)
-                img_array = np.expand_dims(img_array, axis=0)
-                img_array = img_array / 255.0  # normalisasi jika model dilatih begitu
+                label, confidence = klasifikasi_gambar(img)
 
-                # ===============================
-                # Prediksi
-                # ===============================
-                predictions = model.predict(img_array)
-                class_index = np.argmax(predictions)
-                confidence = np.max(predictions)
-
-                # ===============================
-                # Tampilkan hasil
-                # ===============================
-                st.success(f"✅ Hasil Klasifikasi: **{CLASS_NAMES[class_index]}**")
+                st.success(f"### 🌿 Hasil Prediksi: **{label}**")
                 st.write(f"📊 Tingkat keyakinan: **{confidence*100:.2f}%**")
 
-# =====================================
-# Run app
-# =====================================
+                # Saran tindakan
+                advice = {
+                    "Blight": "Terdeteksi **hawar daun** 🌿. Isolasi tanaman yang terinfeksi.",
+                    "Common Rust": "Terdeteksi **karat daun** 🌾. Gunakan fungisida berbasis tembaga.",
+                    "Gray Leaf Spot": "Terdeteksi **bercak abu-abu** 🍂. Kurangi kelembapan sekitar tanaman.",
+                    "Healthy": "Daun dalam kondisi **sehat** 🌱. Pertahankan perawatan yang baik."
+                }
+
+                st.info(advice[label])
+
+# ==========================
+# Jalankan aplikasi
+# ==========================
 if __name__ == "__main__":
     main()
