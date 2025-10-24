@@ -18,8 +18,6 @@ yolo_model, classifier = load_models()
 # ==========================
 # UI
 # ==========================
-st.set_page_config(page_title="Klasifikasi Daun Jagung", layout="wide")
-
 st.title("🌿 Klasifikasi Penyakit Daun Jagung")
 st.write("Unggah gambar daun jagung untuk mendeteksi apakah daun tersebut sehat atau terkena penyakit.")
 
