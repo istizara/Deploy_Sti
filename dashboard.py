@@ -2,6 +2,8 @@ import streamlit as st
 from ultralytics import YOLO
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
+import base64
+import os
 import numpy as np
 from PIL import Image
 import cv2
@@ -42,6 +44,14 @@ st.write("...")
 st.set_page_config(page_title="Object Detection App", layout="wide")
 
 bg_image_path = "background.jpg"  # Adjust path as needed
+
+def get_base64_image(image_path):
+    if not os.path.exists(image_path):
+        st.error(f"File gambar tidak ditemukan: {image_path}")
+        return ""
+    with open(image_path, "rb") as img_file:
+        encoded = base64.b64encode(img_file.read()).decode()
+    return encoded
 
 menu = st.sidebar.selectbox("Pilih Mode:", ["Deteksi Objek (YOLO)", "Klasifikasi Gambar"])
 
