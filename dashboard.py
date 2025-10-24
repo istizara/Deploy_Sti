@@ -20,7 +20,7 @@ def load_models():
 yolo_model, classifier = load_models()
 
 # ==========================
-# UI
+# Menu dan Navigasi
 # ==========================
 
 def add_bg_from_local(image_file):
@@ -66,6 +66,10 @@ body {
 
 menu = st.sidebar.selectbox("Pilih Mode:", ["Deteksi Objek (YOLO)", "Klasifikasi Gambar"])
 
+# ==========================
+# UI
+# ==========================
+
 uploaded_file = st.file_uploader("Unggah Gambar", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
@@ -81,22 +85,30 @@ if uploaded_file is not None:
         st.image(result_img, caption="Hasil Deteksi", use_container_width=True)
 
     elif menu == "Klasifikasi Gambar":
-       # Preprocessing
-        img = img.resize((224, 224))  # ubah sesuai ukuran input model Anda
-        img_array = image.img_to_array(img)
-        img_array = np.expand_dims(img_array, axis=0)
-        img_array = img_array / 255.0  # normalisasi (jika model dilatih dengan skala ini)
+    # --- Preprocessing sesuai input model ---
+    # Ambil ukuran input dari model
+    input_shape = classifier.input_shape[1:3]  
 
+```
+    # Ubah ukuran gambar sesuai input model
+    img_resized = img.resize(input_shape)
 
-        # Prediksi
-        # Preprocessing
-        img_resized = img.resize((224, 224))  # sesuaikan ukuran dengan model kamu
-        img_array = image.img_to_array(img_resized)
-        img_array = np.expand_dims(img_array, axis=0)
-        img_array = img_array / 255.0
-
-        # Prediksi
+    # Konversi ke array dan normalisasi
+    img_array = image.img_to_array(img_resized)
+    img_array = np.expand_dims(img_array, axis=0)
+    img_array = img_array.astype("float32") / 255.0
+    
+    # --- Prediksi ---
+    try:
         prediction = classifier.predict(img_array)
-        class_index = np.argmax(prediction)
-        st.write("### Hasil Prediksi:", class_index)
-        st.write("Probabilitas:", np.max(prediction))
+        class_index = int(np.argmax(prediction))
+        confidence = float(np.max(prediction))
+    
+        st.success(f"Hasil Prediksi: {class_index}")
+        st.write(f"Probabilitas: {confidence:.4f}")
+    
+    except ValueError as e:
+        st.error(f"Terjadi kesalahan saat memproses gambar: {e}")
+        st.info(f"Pastikan ukuran input gambar sesuai dengan model (input shape: {classifier.input_shape})")
+    ```
+
