@@ -18,7 +18,7 @@ def hero_section():
         """
         <style>
         .stApp {
-            background-color: #dadbb1;
+            background-color: #cfe1b9;
             background-attachment: fixed;
             background-size: cover;
         }
