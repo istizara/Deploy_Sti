@@ -44,7 +44,7 @@ def hero_section():
         </style>
         <div class='hero'>
             <h1>🌽 Corn Disease Detection Dashboard for Smart Farming </h1>
-            <p>Deteksi dan klasifikasi penyakit daun jagung secara otomatis menggunakan AI</p>
+            <p>Deteksi dan klasifikasi penyakit daun jagung secara otomatis menggunakan AI🤖</p>
             <a href='#upload' class='btn-start'>Mulai Deteksi Sekarang</a>
         </div>
         """,
@@ -112,11 +112,11 @@ def how_to_use():
     # Langkah umum
     st.subheader("Langkah Umum")
     st.markdown("""
-    1. **Buka Sidebar** di sisi kiri layar Anda.
+    1. **Buka Sidebar** di sisi kiri layar.
     2. Pilih salah satu fitur utama:
         - 🟢 **Object Detection** — untuk mendeteksi area daun yang terinfeksi penyakit.
         - 🟡 **Klasifikasi Gambar** — untuk mengenali jenis penyakit berdasarkan gambar daun jagung.
-    3. Ikuti panduan penggunaan di bawah sesuai fitur yang Anda pilih.
+    3. Ikuti panduan penggunaan di bawah sesuai fitur yang anda pilih.
     """)
 
     # Object Detection
@@ -127,7 +127,7 @@ def how_to_use():
     
     **Langkah-langkah:**
     1. Klik menu *Object Detection* di sidebar.
-    2. Unggah gambar daun jagung dalam format `.jpg` atau `.png`.
+    2. Unggah gambar daun jagung dalam format 'jpeg',`.jpg` atau `.png`.
     3. Tunggu beberapa detik hingga proses pendeteksian selesai.
     4. Hasil berupa gambar dengan kotak (bounding box) yang menandai area daun terinfeksi akan muncul di layar.
     """)
@@ -153,15 +153,6 @@ def how_to_use():
     💡 **Tips:** Pastikan gambar daun jagung memiliki pencahayaan yang baik, fokus pada daun, 
     dan tidak terlalu banyak gangguan latar belakang agar hasil deteksi dan klasifikasi lebih akurat.
     """)
-
-# ===========================
-# Fungsi: Statistik Model
-# ===========================
-def model_stats():
-    st.header("Statistik Model")
-    st.metric(label="Akurasi Model", value="95.2%")
-    st.metric(label="Jumlah Kelas", value="4 Kelas Penyakit")
-    st.metric(label="Total Dataset", value="2,500 Gambar")
 
 # ===========================
 # Fungsi: Tim / Footer
