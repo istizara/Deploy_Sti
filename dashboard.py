@@ -85,27 +85,17 @@ if uploaded_file is not None:
         st.image(result_img, caption="Hasil Deteksi", use_container_width=True)
 
     elif menu == "Klasifikasi Gambar":
-    # --- Preprocessing sesuai input model ---
-    # Ambil ukuran input dari model
-    input_shape = classifier.input_shape[1:3]  
+        # Preprocessing
+        img_resized = img.resize((128, 128))  # sesuaikan ukuran dengan model kamu
+        img_array = image.img_to_array(img_resized)
+        img_array = np.expand_dims(img_array, axis=0)
+        img_array = img_array / 255.0
 
-```
-    # Ubah ukuran gambar sesuai input model
-    img_resized = img.resize(input_shape)
-
-    # Konversi ke array dan normalisasi
-    img_array = image.img_to_array(img_resized)
-    img_array = np.expand_dims(img_array, axis=0)
-    img_array = img_array.astype("float32") / 255.0
-    
-    # --- Prediksi ---
-    try:
+        # Prediksi
         prediction = classifier.predict(img_array)
-        class_index = int(np.argmax(prediction))
-        confidence = float(np.max(prediction))
-    
-        st.success(f"Hasil Prediksi: {class_index}")
-        st.write(f"Probabilitas: {confidence:.4f}")
+        class_index = np.argmax(prediction)
+        st.write("### Hasil Prediksi:", class_index)
+        st.write("Probabilitas:", np.max(prediction))
     
     except ValueError as e:
         st.error(f"Terjadi kesalahan saat memproses gambar: {e}")
