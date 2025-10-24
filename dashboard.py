@@ -23,6 +23,11 @@ yolo_model, classifier = load_models()
 # Menu dan Navigasi
 # ==========================
 
+
+# --- SHARED ON ALL PAGES ---
+st.logo("assets/codingisfun_logo.png")
+
+
 def add_bg_from_local(image_file):
     with open(image_file, "rb") as image:
         encoded = base64.b64encode(image.read()).decode()
