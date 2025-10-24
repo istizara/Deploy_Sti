@@ -24,3 +24,9 @@ pg = st.navigation(
     }
 )
 
+# --- SHARED ON ALL PAGES ---
+st.sidebar.markdown("Made with ❤️ by [Stiwww]")
+
+
+# --- RUN NAVIGATION ---
+pg.run()
