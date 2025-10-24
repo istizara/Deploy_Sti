@@ -4,7 +4,6 @@ import streamlit as st
 # Menu dan Navigasi
 # ==========================
 
-
 # --- SHARED ON ALL PAGES ---
 st.logo("Logo.png")
 
