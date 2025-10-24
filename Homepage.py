@@ -107,7 +107,7 @@ def features_section():
 def how_to_use():
     st.header("Cara Menggunakan Website")
     st.write("""
-    Website ini memiliki dua fitur utama untuk membantu Anda mengenali penyakit pada daun jagung 
+    Website ini memiliki dua fitur utama untuk membantu dalam mengenali penyakit pada daun jagung 
     menggunakan teknologi **Artificial Intelligence (AI)**, yaitu *Deteksi Gambar* dan *Klasifikasi Gambar*.
     """)
 
