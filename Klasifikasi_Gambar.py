@@ -10,14 +10,14 @@ import numpy as np
 MODEL_PATH = "model/Isti_Laporan_2.h5"
 model = load_model(MODEL_PATH)
 
-# Daftar label kelas 
+# Daftar label kelas
 CLASS_NAMES = ["Blight", "Common Rust", "Gray Leaf Spot", "Healthy"]
 
 # ==========================
 # 🌿 Fungsi Klasifikasi
 # ==========================
 def klasifikasi_gambar(img):
-    """Preprocessing"""
+    """Preprocessing dan prediksi gambar."""
     input_shape = model.input_shape[1:3]  # contoh (224, 224)
     img_resized = img.resize(input_shape)
     img_array = image.img_to_array(img_resized)
@@ -34,27 +34,26 @@ def klasifikasi_gambar(img):
 # 🌽 Aplikasi Streamlit
 # ==========================
 def main():
-    st.title("🧠 Klasifikasi Penyakit Daun Jagung")
+    st.title("🌿 Klasifikasi Penyakit Daun Jagung")
+    st.markdown("Unggah gambar daun jagung dan jalankan model klasifikasi untuk mendeteksi penyakitnya.")
 
-    # Sidebar upload
-    st.sidebar.header("📤 Upload Gambar")
-    uploaded_file = st.sidebar.file_uploader("Pilih gambar...", type=["jpg", "jpeg", "png"])
+    # --- Upload gambar di halaman utama ---
+    uploaded_file = st.file_uploader("📤 Upload Gambar", type=["jpg", "jpeg", "png"])
 
     if uploaded_file is not None:
         img = Image.open(uploaded_file).convert("RGB")
 
-        # Tampilkan gambar di halaman utama
+        # Tampilkan gambar
         st.image(img, caption="🖼️ Gambar yang diunggah", use_container_width=True)
 
         # Tombol untuk klasifikasi
-        if st.sidebar.button("🔍 Jalankan Klasifikasi"):
+        if st.button("🔍 Jalankan Klasifikasi"):
             with st.spinner("Model sedang memproses gambar... ⏳"):
                 label, confidence = klasifikasi_gambar(img)
 
-                st.success(f"### 🌿 Hasil Prediksi: **{label}**")
+                st.success(f"### 🌾 Hasil Prediksi: **{label}**")
                 st.write(f"📊 Tingkat keyakinan: **{confidence*100:.2f}%**")
 
-                # Saran tindakan
                 advice = {
                     "Blight": "Terdeteksi **hawar daun** 🌿. Isolasi tanaman yang terinfeksi.",
                     "Common Rust": "Terdeteksi **karat daun** 🌾. Gunakan fungisida berbasis tembaga.",
