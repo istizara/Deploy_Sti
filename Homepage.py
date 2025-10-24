@@ -34,7 +34,7 @@ def hero_section():
             margin-top: 10px;
         }
         .btn-start {
-            background-color: #43a047;
+            background-color: #abbe99;
             color: white;
             padding: 0.6em 1.5em;
             border-radius: 10px;
