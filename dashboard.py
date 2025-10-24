@@ -27,48 +27,21 @@ yolo_model, classifier = load_models()
 # --- SHARED ON ALL PAGES ---
 st.logo("Logo.png")
 
-def add_bg_from_local(image_file):
-    with open(image_file, "rb") as image:
-        encoded = base64.b64encode(image.read()).decode()
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background-image: url("data:image/jpg;base64,{encoded}");
-            background-size: cover;
-            background-position: center;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-# Panggil fungsi di awal Streamlit
-add_bg_from_local("background.jpg")
-
-st.set_page_config(
-    page_title="Corn Disease Detection Dashboard for Smart Farming",
-    page_icon="🌿",
-    layout="wide"
+# --- PAGE SETUP ---
+Homepage = st.Page(
+    "Homepage.py",
+    title="Homepage",
+    icon=":material/account_circle:",
+    default=True,
 )
 
-st.title("🌿 Corn Disease Detection Dashboard for Smart Farming")
-st.write("...")
+# --- NAVIGATION SETUP [WITH SECTIONS]---
+pg = st.navigation(
+    {
+        "Info": [Homepage]
+    }
+)
 
-# Page config
-st.set_page_config(page_title="Object Detection App", layout="wide")
-
-bg_image_path = "background.jpg"  # Adjust path as needed
-
-st.markdown("""
-<style>
-body {
-  background: "background.jpg";
-}
-</style>
-    """, unsafe_allow_html=True)
-
-menu = st.sidebar.selectbox("Pilih Mode:", ["Deteksi Objek (YOLO)", "Klasifikasi Gambar"])
 
 # ==========================
 # UI
