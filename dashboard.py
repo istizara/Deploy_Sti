@@ -113,6 +113,6 @@ if uploaded_file is not None:
                           "Grey Spot Leaf": "Muncul bercak abu-abu 🍂. Pastikan kelembapan tidak terlalu tinggi.", 
                           "Healthy": "Daun dalam kondisi sehat 🌱. Pertahankan perawatan tanaman." } 
                 st.info(advice[predicted_label]) 
-        except 
-        Exception as e: st.error(f"Terjadi kesalahan saat memproses gambar: {e}") 
+        except Exception as e: 
+            st.error(f"Terjadi kesalahan saat memproses gambar: {e}") 
             st.info(f"Pastikan ukuran input gambar sesuai dengan model (input shape: {classifier.input_shape})")
