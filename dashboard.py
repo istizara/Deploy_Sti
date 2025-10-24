@@ -100,5 +100,4 @@ if uploaded_file is not None:
     labels = ["Blight", "Common Rust", "Grey Spot Leaf", "Healthy"] 
     predicted_label = labels[class_index] 
     st.markdown(f"### 🌿 Hasil Prediksi: **{predicted_label}**") 
-    st.markdown(f"**Probabilitas:** {confidence:.4%}") 
 
