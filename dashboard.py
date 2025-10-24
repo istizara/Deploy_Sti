@@ -19,11 +19,16 @@ Object_detection_page = st.Page(
     title="Deteksi Gambar",
     icon=":material/bar_chart:",
 )
+Klassification_page = st.Page(
+    "Klasifikasi_Gambar.py",
+    title="Klasifikasi Gambar",
+    icon=":material/smart_toy:",
+)
 # --- NAVIGATION SETUP [WITH SECTIONS]---
 pg = st.navigation(
     {
         "Info": [Homepage],
-         "Projects" : [Object_detection_page]
+         "Projects" : [Object_detection_page, Klassification_page]
     }
 )
 
