@@ -71,12 +71,11 @@ if uploaded_file is not None:
 
     elif menu == "Klasifikasi Gambar":
        # Preprocessing
-    def preprocess_image(img):
+        preprocess_image(img):
         img = img.resize((224, 224))  # ubah sesuai ukuran input model Anda
         img_array = image.img_to_array(img)
         img_array = np.expand_dims(img_array, axis=0)
         img_array = img_array / 255.0  # normalisasi (jika model dilatih dengan skala ini)
-        return img_array
 
 
         # Prediksi
