@@ -1,134 +1,60 @@
 import streamlit as st
-import numpy as np
-from tensorflow.keras.preprocessing import image
 import tensorflow as tf
+import numpy as np
 from ultralytics import YOLO
 from PIL import Image
 
-# ==========================
-# Load Model
-# ==========================
 @st.cache_resource
 def load_models():
-    yolo_model = YOLO("model/Isti_Laporan 4.pt")
+    yolo_model = YOLO("model/Isti_Laporan_4.pt")
     classifier = tf.keras.models.load_model("model/Isti_Laporan_2.h5")
     return yolo_model, classifier
 
 yolo_model, classifier = load_models()
 
-# ==========================
-# UI
-# ==========================
-st.title("🌿 Klasifikasi Penyakit Daun Jagung")
-st.write("Unggah gambar daun jagung untuk mendeteksi apakah daun tersebut sehat atau terkena penyakit.")
+st.title("🌽 Klasifikasi Penyakit Daun Jagung")
 
-uploaded_file = st.file_uploader("📤 Unggah Gambar", type=["jpg", "jpeg", "png"])
+# Buat 3 kolom
+col1, col2, col3 = st.columns([2, 1, 2])
 
+uploaded_file = col1.file_uploader("Unggah gambar daun jagung", type=["jpg", "png", "jpeg"])
+
+# Jika ada gambar diunggah, tampilkan
 if uploaded_file is not None:
-    img = Image.open(uploaded_file).convert("RGB")
+    img = Image.open(uploaded_file)
+    col1.image(img, caption="Gambar yang diunggah", use_column_width=True)
 
     # Tombol Run di tengah
-    col_center = st.columns([1, 1, 1])[1]
-    with col_center:
-        run_classification = st.button("🧠 Run Classification", type="primary")
+    run_button = col2.button("Jalankan Prediksi")
 
-    col1, col2 = st.columns([1, 1])
+    if run_button:
+        with st.spinner("Menganalisis gambar..."):
+            detection_result = yolo_model(img)
+            labels_detected = [box.cls for box in detection_result[0].boxes]
 
-    with col1:
-        st.image(img, caption="🖼️ Uploaded Image", width=300)
+            # Jika tidak ada daun jagung terdeteksi
+            if len(labels_detected) == 0:
+                # tampilkan warning di bawah layout kolom
+                st.warning("⚠️ Tidak ada daun jagung terdeteksi. Silakan unggah gambar daun yang jelas.")
+            else:
+                # Prediksi penyakit daun
+                img_resized = img.resize((224, 224))
+                img_array = np.expand_dims(np.array(img_resized) / 255.0, axis=0)
 
-        if run_classification:
-            with st.spinner("🔍 Memproses gambar... harap tunggu sebentar"):
-                try:
-                    # ================================
-                    # Tahap 1: Validasi daun jagung
-                    # ================================
-                    detection_result = yolo_model(img)
-                    labels_detected = [int(box.cls) for box in detection_result[0].boxes]
-     if len(labels_detected) == 0:
-         st.markdown(
-         """
-         <div style="
-              background-color: #fff3cd;
-              color: #856404;
-              padding: 30px 20px;
-              border-radius: 12px;
-              border: 1px solid #ffeeba;
-              font-size: 16px;
-              text-align: justify;
-              margin-top: 25px;
-              margin-bottom: 10px;
-              width: 90%;
-              margin-left: auto;
-              margin-right: auto;
-              box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-         ">
-         ⚠️ <b>Gambar yang diunggah tidak terdeteksi sebagai daun jagung.</b><br><br>
-         Silakan unggah gambar daun jagung yang valid agar sistem dapat mengenali dan mengklasifikasikan penyakit secara akurat.
-         </div>
-         """
-             unsafe_allow_html=True
-             )
+                prediction = classifier.predict(img_array)
+                class_index = int(np.argmax(prediction))
+                confidence = float(np.max(prediction))
 
-                    else:
-                        # ================================
-                        # Tahap 2: Klasifikasi penyakit daun
-                        # ================================
-                        input_shape = classifier.input_shape[1:3]
-                        img_resized = img.resize(input_shape)
-                        img_array = image.img_to_array(img_resized)
-                        img_array = np.expand_dims(img_array, axis=0)
-                        img_array = img_array.astype("float32") / 255.0
+                labels = ["Blight", "Common Rust", "Grey Spot Leaf", "Healthy"]
+                predicted_label = labels[class_index]
 
-                        prediction = classifier.predict(img_array)
-                        class_index = int(np.argmax(prediction))
-                        confidence = float(np.max(prediction))
+                col3.success(f"🌿 Hasil Prediksi: **{predicted_label}**")
+                col3.write(f"Probabilitas: {confidence:.2%}")
 
-                        labels = ["Blight", "Common Rust", "Grey Spot Leaf", "Healthy"]
-                        predicted_label = labels[class_index]
-
-                        # Simpan hasil prediksi
-                        st.session_state["hasil_prediksi"] = {
-                            "label": predicted_label,
-                            "confidence": confidence,
-                            "model": "Isti_Laporan_2.h5"
-                        }
-
-                except Exception as e:
-                    st.error(f"❌ Terjadi kesalahan: {e}")
-
-    with col2:
-        st.markdown("### 📊 Hasil Klasifikasi")
-
-        if "hasil_prediksi" in st.session_state:
-            hasil = st.session_state["hasil_prediksi"]
-
-            warna_label = {
-                "Blight": "#FF4B4B",
-                "Common Rust": "#FFA500",
-                "Grey Spot Leaf": "#00C853",
-                "Healthy": "#1E90FF"
-            }
-            warna = warna_label.get(hasil["label"], "#FFFFFF")
-
-            st.markdown(
-                f"**📷 Prediction:** <span style='color:{warna};font-weight:bold'>{hasil['label']}</span>",
-                unsafe_allow_html=True
-            )
-            st.markdown(f"**📈 Confidence:** {hasil['confidence']*100:.2f}%")
-            st.markdown(f"**💾 Model Used:** `{hasil['model']}`")
-
-            # Rekomendasi
-            advice = {
-                "Blight": "🌿 Terdeteksi hawar daun. Isolasi tanaman yang terinfeksi dan hindari penyiraman berlebih.",
-                "Common Rust": "🌾 Terdeteksi karat daun. Lakukan penyemprotan fungisida berbasis tembaga.",
-                "Grey Spot Leaf": "🍂 Ditemukan bercak abu-abu. Pastikan kelembapan lahan tidak terlalu tinggi.",
-                "Healthy": "🌱 Daun dalam kondisi sehat! Pertahankan perawatan tanaman dengan baik."
-            }
-
-            st.info(advice[hasil["label"]])
-
-        else:
-            st.write("⚙️ Hasil prediksi akan muncul setelah menekan tombol **Run Classification**.")
-else:
-    st.info("📸 Silakan unggah gambar daun jagung terlebih dahulu.")
+                advice = {
+                    "Blight": "🌿 Terdeteksi hawar daun. Segera isolasi tanaman yang terinfeksi.",
+                    "Common Rust": "🌾 Terdeteksi karat daun. Lakukan penyemprotan fungisida berbasis tembaga.",
+                    "Grey Spot Leaf": "🍂 Muncul bercak abu-abu. Pastikan kelembapan tidak terlalu tinggi.",
+                    "Healthy": "🌱 Daun dalam kondisi sehat. Pertahankan perawatan tanaman."
+                }
+                col3.info(advice[pred]()
