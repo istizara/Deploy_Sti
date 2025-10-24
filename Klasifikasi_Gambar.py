@@ -20,16 +20,15 @@ classifier = load_classifier()
 st.title("🌿 Klasifikasi Penyakit Daun Jagung")
 st.write("Unggah gambar daun jagung untuk mendeteksi apakah daun tersebut sehat atau terkena penyakit.")
 
+  uploaded_file = st.file_uploader("📤 Unggah Gambar", type=["jpg", "jpeg", "png"])
+    if uploaded_file is not None:
+        img = Image.open(uploaded_file).convert("RGB")
 # ==========================
 # Layout dua kolom
 # ==========================
 col1, col2 = st.columns([1.2, 1])
 
-with col1:
-    uploaded_file = st.file_uploader("📤 Unggah Gambar", type=["jpg", "jpeg", "png"])
-
-    if uploaded_file is not None:
-        img = Image.open(uploaded_file).convert("RGB")
+with col1:  
         st.image(img, caption="🖼️ Uploaded Image", use_container_width=True)
 
         # Tombol untuk klasifikasi
