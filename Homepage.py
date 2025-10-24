@@ -24,12 +24,12 @@ def hero_section():
         }
         .hero {
             text-align: center;
-            padding: 70px 20px;
+            padding: 40px 20px;
             background: rgba(255, 255, 255, 0.30); 
             border-radius: 25px;
-            width: 80%;
+            width: 65%;
             margin: 60px auto;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
         }
         .hero h1 {
             font-size: 2.5em;
