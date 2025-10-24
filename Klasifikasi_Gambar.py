@@ -20,7 +20,6 @@ classifier = load_classifier()
 st.title("🌿 Klasifikasi Penyakit Daun Jagung")
 st.write("Unggah gambar daun jagung untuk mendeteksi apakah daun tersebut sehat atau terkena penyakit.")
 
-uploaded_file = st.file_uploader("📤 Unggah Gambar", type=["jpg", "jpeg", "png"])
 # ==========================
 # Layout dua kolom
 # ==========================
