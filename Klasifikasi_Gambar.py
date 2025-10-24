@@ -104,24 +104,18 @@ if uploaded_file is not None:
                 "Grey Spot Leaf": "#00C853",
                 "Healthy": "#1E90FF"
             }
-            warna = warna_label.get(hasil["label"], "#FFFFFF")
-
-            st.markdown(
+           if hasil["label"] == "Tidak terdeteksi daun jagung":
+               st.warning("⚠️ Gambar tidak terdeteksi sebagai daun jagung. Silakan unggah gambar yang valid.")
+            else:
+                warna = warna_label.get(hasil["label"], "#FFFFFF")
+                st.markdown(
                 f"**📷 Prediction:** <span style='color:{warna};font-weight:bold'>{hasil['label']}</span>",
                 unsafe_allow_html=True
             )
-            st.markdown(f"**📈 Confidence:** {hasil['confidence']*100:.2f}%")
-            st.markdown(f"**💾 Model Used:** `{hasil['model']}`")
-
-            # Rekomendasi
-            advice = {
-                "Blight": "🌿 Terdeteksi hawar daun. Isolasi tanaman yang terinfeksi dan hindari penyiraman berlebih.",
-                "Common Rust": "🌾 Terdeteksi karat daun. Lakukan penyemprotan fungisida berbasis tembaga.",
-                "Grey Spot Leaf": "🍂 Ditemukan bercak abu-abu. Pastikan kelembapan lahan tidak terlalu tinggi.",
-                "Healthy": "🌱 Daun dalam kondisi sehat! Pertahankan perawatan tanaman dengan baik."
-            }
-
-            st.info(advice[hasil["label"]])
+                st.markdown(f"**📈 Confidence:** {hasil['confidence']*100:.2f}%")
+                st.markdown(f"**💾 Model Used:** `{hasil['model']}`")
+            
+                st.info(advice[hasil["label"]])
 
         else:
             st.write("⚙️ Hasil prediksi akan muncul setelah menekan tombol **Run Classification**.")
