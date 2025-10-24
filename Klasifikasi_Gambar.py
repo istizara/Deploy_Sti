@@ -44,9 +44,14 @@ if uploaded_file is not None:
                     # Tahap 1: Validasi daun jagung
                     # ================================
                     detection_result = yolo_model(img)
-                    labels_detected = [int(box.cls) for box in detection_result[0].boxes]
+                    boxes = detection_result[0].boxes
 
-                    if len(labels_detected) == 0:
+                    # Ambil confidence dari setiap deteksi
+                    conf_scores = boxes.conf.tolist() if boxes is not None else []
+                    valid_detections = [c for c in conf_scores if c > 0.5]  # threshold 50%
+
+                    if len(valid_detections) == 0:
+                        # Tidak ada daun jagung dengan confidence cukup tinggi
                         st.markdown(
                             """
                             <div style="
@@ -106,7 +111,7 @@ if uploaded_file is not None:
         if "hasil_prediksi" in st.session_state:
             hasil = st.session_state["hasil_prediksi"]
 
-            # Warna label
+            # Warna label untuk hasil klasifikasi
             warna_label = {
                 "Blight": "#FF4B4B",
                 "Common Rust": "#FFA500",
@@ -114,7 +119,7 @@ if uploaded_file is not None:
                 "Healthy": "#1E90FF"
             }
 
-            # Rekomendasi
+            # Rekomendasi sesuai hasil
             advice = {
                 "Blight": "🌿 Terdeteksi hawar daun. Isolasi tanaman yang terinfeksi dan hindari penyiraman berlebih.",
                 "Common Rust": "🌾 Terdeteksi karat daun. Lakukan penyemprotan fungisida berbasis tembaga.",
@@ -122,9 +127,26 @@ if uploaded_file is not None:
                 "Healthy": "🌱 Daun dalam kondisi sehat! Pertahankan perawatan tanaman dengan baik."
             }
 
-            # Kondisi khusus jika tidak terdeteksi daun
+            # Kondisi khusus jika bukan daun jagung
             if hasil["label"] == "Tidak terdeteksi daun jagung":
-                st.warning("⚠️ Gambar tidak terdeteksi sebagai daun jagung. Silakan unggah gambar yang valid.")
+                st.markdown(
+                    """
+                    <div style="
+                        background-color: #FFF3CD;
+                        color: #856404;
+                        padding: 15px;
+                        border-radius: 10px;
+                        border: 1px solid #FFEeba;
+                        font-size: 16px;
+                        text-align: justify;
+                        width: 100%;
+                    ">
+                    ⚠️ <b>Gambar yang diunggah tidak terdeteksi sebagai daun jagung.</b><br>
+                    Silakan unggah gambar daun jagung yang valid agar sistem dapat mengklasifikasikan dengan akurat.
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
             else:
                 warna = warna_label.get(hasil["label"], "#FFFFFF")
 
@@ -139,5 +161,6 @@ if uploaded_file is not None:
 
         else:
             st.write("⚙️ Hasil prediksi akan muncul setelah menekan tombol **Run Classification**.")
+
 else:
     st.info("📸 Silakan unggah gambar daun jagung terlebih dahulu.")
