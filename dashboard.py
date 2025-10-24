@@ -43,12 +43,12 @@ def add_bg_from_local(image_file):
 add_bg_from_local("background.jpg")
 
 st.set_page_config(
-    page_title="Dashboard Prediksi Gambar",
+    page_title="Corn Disease Detection Dashboard for Smart Farming",
     page_icon="🌿",
     layout="wide"
 )
 
-st.title("🌿 Prediksi Penyakit Pada Daun Jagung")
+st.title("🌿 Corn Disease Detection Dashboard for Smart Farming")
 st.write("...")
 
 # Page config
