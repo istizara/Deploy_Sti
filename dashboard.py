@@ -11,13 +11,13 @@ st.logo("Logo.png")
 Homepage = st.Page(
     "Homepage.py",
     title="Homepage",
-    icon=":material/account_circle:",
+    icon=":material/house:",
     default=True,
 )
 Object_detection_page = st.Page(
     "Deteksi_Gambar.py",
     title="Deteksi Gambar",
-    icon=":material/bar_chart:",
+    icon=":material/lamp:",
 )
 # --- NAVIGATION SETUP [WITH SECTIONS]---
 pg = st.navigation(
