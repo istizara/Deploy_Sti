@@ -1,5 +1,5 @@
 import streamlit as st
-from tensorflow.keras.models import load_model
+import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 from PIL import Image
 import numpy as np
@@ -7,8 +7,12 @@ import numpy as np
 # ==========================
 # 🔧 Load Model
 # ==========================
-MODEL_PATH = "model/Isti_Laporan_2.h5"
-model = load_model(MODEL_PATH)
+@st.cache_resource
+def load_models():
+    classifier = tf.keras.models.load_model("model/Isti_Laporan_2.h5")
+    return classifier
+
+classifier = load_models()
 
 # Daftar label kelas
 CLASS_NAMES = ["Blight", "Common Rust", "Gray Leaf Spot", "Healthy"]
