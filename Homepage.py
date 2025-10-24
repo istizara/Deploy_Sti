@@ -45,8 +45,6 @@ def hero_section():
         <div class='hero'>
             <h1>🌽 Corn Disease Detection Dashboard for Smart Farming </h1>
             <p>Deteksi dan klasifikasi penyakit daun jagung secara otomatis menggunakan AI🤖</p>
-            <a href='#upload' class='btn-start'>Mulai Deteksi Sekarang</a>
-        </div>
         """,
         unsafe_allow_html=True
     )
@@ -160,7 +158,7 @@ def how_to_use():
 def footer():
     st.write("---")
     st.markdown("""
-    **Dibuat oleh:** Isti Kamila Nanda Zahra 
+    **Dibuat oleh:** Isti Kamila Nanda Zahra
     **Program Studi:** Statistika, Universitas Syiah Kuala  
     **© 2025 Corn Disease Detection for Smart Farming**
     """)
