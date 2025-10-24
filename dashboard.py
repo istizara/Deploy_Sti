@@ -23,7 +23,24 @@ yolo_model, classifier = load_models()
 # UI
 # ==========================
 
-set_background('./background.jpg')
+def add_bg_from_local(image_file):
+    with open(image_file, "rb") as image:
+        encoded = base64.b64encode(image.read()).decode()
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/jpg;base64,{encoded}");
+            background-size: cover;
+            background-position: center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Panggil fungsi di awal Streamlit
+add_bg_from_local("background.jpg")
 
 st.set_page_config(
     page_title="Dashboard Prediksi Gambar",
