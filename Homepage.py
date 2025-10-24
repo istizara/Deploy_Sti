@@ -25,7 +25,7 @@ def hero_section():
         .hero {
             text-align: center;
             padding: 70px 20px;
-            background: rgba(255, 255, 255, 0.45); /* putih transparan 45% */
+            background: rgba(255, 255, 255, 0.30); 
             border-radius: 25px;
             width: 80%;
             margin: 60px auto;
@@ -144,7 +144,7 @@ def how_to_use():
     
     **Langkah-langkah:**
     1. Klik menu *Object Detection* di sidebar.
-    2. Unggah gambar daun jagung dalam format 'jpeg',`.jpg` atau `.png`.
+    2. Unggah gambar daun jagung dalam format '.jpeg',`.jpg` atau `.png`.
     3. Tunggu beberapa detik hingga proses pendeteksian selesai.
     4. Hasil berupa gambar dengan kotak (bounding box) yang menandai area daun terinfeksi akan muncul di layar.
     """)
