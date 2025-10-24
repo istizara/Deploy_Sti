@@ -79,11 +79,11 @@ def disease_section():
         st.subheader("Blight")
         st.caption("Bercak coklat memanjang di permukaan daun.")
     with col3:
-        st.image("Corn_Common_Rust (900)", use_container_width=True)
+        st.image("Corn_Common_Rust (900).JPG", use_container_width=True)
         st.subheader("Common Rust")
         st.caption("Bercak jingga kekuningan kecil.")
     with col4:
-        st.image("Cor_Gray_Spot (496).JPG", use_container_width=True)
+        st.image("Corn_Gray_Spot (496).JPG", use_container_width=True)
         st.subheader("Gray Leaf Spot")
         st.caption("Bercak persegi panjang abu-abu pada daun.")
 
