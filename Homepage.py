@@ -1,0 +1,152 @@
+import streamlit as st
+from PIL import Image
+
+# ===========================
+# Konfigurasi Halaman
+# ===========================
+st.set_page_config(
+    page_title="CornLeaf Disease Detection",
+    page_icon="🌽",
+    layout="wide",
+)
+
+# ===========================
+# Fungsi: Tampilan Hero Section
+# ===========================
+def hero_section():
+    st.markdown(
+        """
+        <style>
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #daf7a6, #c2f0a3);
+            border-radius: 20px;
+        }
+        .hero h1 {
+            font-size: 3em;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        .hero p {
+            font-size: 1.2em;
+            color: #33691e;
+            margin-top: 10px;
+        }
+        .btn-start {
+            background-color: #43a047;
+            color: white;
+            padding: 0.6em 1.5em;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1em;
+        }
+        </style>
+        <div class='hero'>
+            <h1>🌽 Corn Disease Detection Dashboard for Smart Farming </h1>
+            <p>Deteksi dan klasifikasi penyakit daun jagung secara otomatis menggunakan AI</p>
+            <a href='#upload' class='btn-start'>Mulai Deteksi Sekarang</a>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+# ===========================
+# Fungsi: Tentang Proyek
+# ===========================
+def about_section():
+    st.header("Tentang Proyek")
+    st.write("""
+    Website ini dikembangkan untuk membantu petani, peneliti, dan mahasiswa dalam mendeteksi serta 
+    mengklasifikasi penyakit pada daun jagung menggunakan teknologi **Computer Vision** dan **Deep Learning**.
+    
+    Sistem ini mampu mengenali beberapa jenis penyakit berdasarkan gambar daun jagung yang diunggah pengguna.
+    """)
+
+# ===========================
+# Fungsi: Jenis Penyakit
+# ===========================
+def disease_section():
+    st.header("Jenis Penyakit yang Dapat Dideteksi")
+
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.image("images/healthy.jpg", use_container_width=True)
+        st.subheader("Healthy")
+        st.caption("Daun hijau segar tanpa bercak.")
+    with col2:
+        st.image("images/blight.jpg", use_container_width=True)
+        st.subheader("Blight (Hawar Daun)")
+        st.caption("Bercak coklat memanjang di permukaan daun.")
+    with col3:
+        st.image("images/rust.jpg", use_container_width=True)
+        st.subheader("Rust (Karat Daun)")
+        st.caption("Bercak jingga kekuningan kecil.")
+    with col4:
+        st.image("images/gray_leaf_spot.jpg", use_container_width=True)
+        st.subheader("Gray Leaf Spot")
+        st.caption("Bercak persegi panjang abu-abu pada daun.")
+
+# ===========================
+# Fungsi: Fitur Utama
+# ===========================
+def features_section():
+    st.header("Fitur Utama")
+    st.markdown("""
+    - 🔍 **Object Detection** – Menandai area terinfeksi pada daun jagung.  
+    - 🧠 **AI Classification** – Mengidentifikasi jenis penyakit secara otomatis.  
+    - 📊 **Confidence Score** – Menampilkan tingkat keyakinan model.  
+    - 🌐 **User-Friendly Interface** – Tampilan mudah digunakan dan interaktif. 
+    """)
+
+# ===========================
+# Fungsi: Cara Menggunakan
+# ===========================
+def how_to_use():
+    st.header("Cara Menggunakan")
+    st.write("Ikuti 3 langkah sederhana berikut untuk mendeteksi penyakit daun jagung:")
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.image("images/upload.png", use_container_width=True)
+        st.subheader("1. Upload Gambar")
+        st.caption("Unggah citra daun jagung yang ingin dideteksi.")
+    with col2:
+        st.image("images/detect.png", use_container_width=True)
+        st.subheader("2. Proses AI")
+        st.caption("Model AI akan mendeteksi dan mengklasifikasi penyakit.")
+    with col3:
+        st.image("images/result.png", use_container_width=True)
+        st.subheader("3. Lihat Hasil")
+        st.caption("Tampilkan hasil deteksi lengkap dengan tingkat akurasi.")
+
+# ===========================
+# Fungsi: Statistik Model
+# ===========================
+def model_stats():
+    st.header("Statistik Model")
+    st.metric(label="Akurasi Model", value="95.2%")
+    st.metric(label="Jumlah Kelas", value="4 Kelas Penyakit")
+    st.metric(label="Total Dataset", value="2,500 Gambar")
+
+# ===========================
+# Fungsi: Tim / Footer
+# ===========================
+def footer():
+    st.write("---")
+    st.markdown("""
+    **Dibuat oleh:** Tim CornLeaf AI  
+    **Program Studi:** Statistika, Universitas Syiah Kuala  
+    **© 2025 CornLeaf Disease Detection Project**
+    """)
+
+# ===========================
+# TAMPILAN UTAMA HOMEPAGE
+# ===========================
+hero_section()
+about_section()
+disease_section()
+features_section()
+how_to_use()
+model_stats()
+footer()
