@@ -46,8 +46,25 @@ if uploaded_file is not None:
                     labels_detected = [int(box.cls) for box in detection_result[0].boxes]
 
                     if len(labels_detected) == 0:
-                        st.warning("⚠️ Gambar yang diunggah **tidak terdeteksi sebagai daun jagung.** "
-                                   "Silakan unggah gambar daun jagung yang valid.")
+                        st.markdown(
+                            """
+                            <div style="
+                                background-color: #FFF3CD;
+                                color: #856404;
+                                padding: 15px;
+                                border-radius: 10px;
+                                border: 1px solid #FFEeba;
+                                font-size: 16px;
+                                text-align: justify;
+                                width: 100%;
+                            ">
+                            ⚠️ <b>Gambar yang diunggah tidak terdeteksi sebagai daun jagung.</b><br>
+                            Silakan unggah gambar daun jagung yang valid agar sistem dapat mengklasifikasikan dengan akurat.
+                            </div>
+                            """,
+                            unsafe_allow_html=True
+                        )
+
                     else:
                         # ================================
                         # Tahap 2: Klasifikasi penyakit daun
