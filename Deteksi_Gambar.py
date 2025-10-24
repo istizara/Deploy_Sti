@@ -35,7 +35,10 @@ def object_detection_page():
         if st.button("🔍 Jalankan Deteksi"):
             with st.spinner("Model sedang memproses gambar... ⏳"):
                 # Simpan file upload sementara
-                temp_file = tempfile.NamedTemporaryFile(delete=False)
+                temp_file = tempfile.NamedTemporaryFile(delete=False, suffix=".jpg")
+                if image.mode != "RGB":
+                    image = image.convert("RGB")
+
                 image.save(temp_file.name)
 
                 # Jalankan deteksi
