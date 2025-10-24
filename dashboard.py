@@ -97,4 +97,12 @@ if uploaded_file is not None:
         st.write("### Hasil Prediksi:", class_index)
         st.write("Probabilitas:", np.max(prediction))
 
-
+    # Label kelas sesuai urutan training model kamu 
+    labels = ["Healthy", "Common Rust", "Blight", "Grey Spot Leaf"] 
+    predicted_label = labels[class_index] 
+    st.markdown(f"### 🌿 Hasil Prediksi: **{predicted_label}**") 
+    st.markdown(f"**Probabilitas:** {confidence:.4%}") 
+    
+    except ValueError as e: 
+    st.error(f"Terjadi kesalahan saat memproses gambar: {e}") 
+    st.info(f"Pastikan ukuran input gambar sesuai dengan model (input shape: {classifier.input_shape})")
