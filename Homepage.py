@@ -24,12 +24,12 @@ def hero_section():
         }
         .hero {
             text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.30); 
+            padding: 70px 20px;
+            background: rgba(255, 255, 255, 0.25); 
             border-radius: 25px;
-            width: 65%;
+            width: 80%;
             margin: 60px auto;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
         .hero h1 {
             font-size: 2.5em;
@@ -41,19 +41,6 @@ def hero_section():
             font-size: 1.1em;
             color: #2b472b;
             margin-top: 0;
-        }
-        
-        .btn-start {
-            display: inline-block;
-            background-color: #7c9960;
-            color: white;
-            padding: 0.6em 1.5em;
-            border-radius: 10px;
-            text-decoration: none;
-            font-size: 1em;
-            font-weight: 600;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
         }
 
         .btn-start:hover {
