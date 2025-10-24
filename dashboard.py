@@ -95,8 +95,8 @@ if uploaded_file is not None:
             # --- Tahap 1: Validasi apakah gambar mirip daun jagung --- 
             detection_result = yolo_model(img) 
             labels_detected = [box.cls for box in detection_result[0].boxes] 
-            if 
-            len(labels_detected) == 0: 
+            
+            if len(labels_detected) == 0: 
                 st.warning("⚠️ Gambar yang diunggah tidak terdeteksi sebagai daun jagung. Silakan unggah gambar daun jagung yang valid.") 
             else: 
                 # --- Tahap 2: Klasifikasi penyakit daun --- 
