@@ -9,7 +9,7 @@ from PIL import Image
 # ==========================
 @st.cache_resource
 def load_models():
-    yolo_model = YOLO("model/Isti_Laporan_4.pt")  # deteksi daun
+    yolo_model = YOLO("model/Isti_Laporan 4.pt")  # deteksi daun
     classifier = tf.keras.models.load_model("model/Isti_Laporan_2.h5")  # klasifikasi penyakit
     return yolo_model, classifier
 
