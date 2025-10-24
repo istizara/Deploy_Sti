@@ -15,7 +15,7 @@ Homepage = st.Page(
     default=True,
 )
 Object_detection_page = st.Page(
-    "Deteks_Gambar.py",
+    "Deteksi_Gambar.py",
     title="Deteksi Gambar",
     icon=":material/bar_chart:",
 )
