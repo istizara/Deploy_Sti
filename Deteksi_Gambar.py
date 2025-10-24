@@ -15,7 +15,7 @@ def object_detection_page():
     # ==========================
     # Load model YOLO (.pt)
     # ==========================
-    model_path = "model/Isti_Lapora 4.pt"
+    model_path = "model/Isti_Laporan 4.pt"
     try:
         model = YOLO(model_path)
     except Exception as e:
