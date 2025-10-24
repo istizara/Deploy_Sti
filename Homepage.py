@@ -24,7 +24,7 @@ def hero_section():
         }
         .hero {
             text-align: center;
-            padding: 70px 20px;
+            padding: 70px 10px;
             background: rgba(255, 255, 255, 0.25); 
             border-radius: 25px;
             width: 80%;
