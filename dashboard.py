@@ -2,6 +2,7 @@ import streamlit as st
 from ultralytics import YOLO
 import tensorflow as tf
 from tensorflow.keras.preprocessing import image
+from Models import classifier
 import base64
 import os
 import numpy as np
@@ -68,14 +69,36 @@ if uploaded_file is not None:
         st.image(result_img, caption="Hasil Deteksi", use_container_width=True)
 
     elif menu == "Klasifikasi Gambar":
-        # Preprocessing
-        img_resized = img.resize((224, 224))  # sesuaikan ukuran dengan model kamu
-        img_array = image.img_to_array(img_resized)
-        img_array = np.expand_dims(img_array, axis=0)
-        img_array = img_array / 255.0
+        img = Image.open(uploaded_file).convert("RGB")
+    prediction = None
 
-        # Prediksi
-        prediction = classifier.predict(img_array)
-        class_index = np.argmax(prediction)
-        st.write("### Hasil Prediksi:", class_index)
-        st.write("Probabilitas:", np.max(prediction))
+    col1, col2, col3 = st.columns([1.2, 1, 1.2], gap="large")
+
+    with col1:
+        st.image(img, use_container_width=True, caption="📥 Uploaded Image")
+
+    with col2:
+        st.markdown("""<br><br>""", unsafe_allow_html=True)
+
+        st.markdown("""
+            <style>
+            div.stButton > button {
+                margin-left: 30%;
+            }
+            </style>
+        """, unsafe_allow_html=True)
+
+        if st.button("🚀 Run Classification"):
+            with st.spinner("Classifying..."):
+                label, score = classifier(img, model_data["weights_name"], model_data["class_names"])
+                prediction = (label, score)
+
+    with col3:
+        if prediction:
+            label, score = prediction
+            st.markdown(f"""
+                <br><br>
+                <h3>📷 Prediction: <code>{label}</code></h3>
+                <h4>🔢 Confidence: <code>{score:.2f}</code></h4>
+                <h5>🧠 Model Used: <code>{model_data['weights_name']}</code></h5>
+            """, unsafe_allow_html=True)
