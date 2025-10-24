@@ -23,3 +23,4 @@ pg = st.navigation(
          "Projects" : []
     }
 )
+streamlit run dashboard.py
