@@ -45,13 +45,13 @@ st.set_page_config(page_title="Object Detection App", layout="wide")
 
 bg_image_path = "background.jpg"  # Adjust path as needed
 
-def get_base64_image(image_path):
-    if not os.path.exists(image_path):
-        st.error(f"File gambar tidak ditemukan: {image_path}")
-        return ""
-    with open(image_path, "rb") as img_file:
-        encoded = base64.b64encode(img_file.read()).decode()
-    return encoded
+st.markdown("""
+<style>
+body {
+  background: "background.jpg";
+}
+</style>
+    """, unsafe_allow_html=True)
 
 menu = st.sidebar.selectbox("Pilih Mode:", ["Deteksi Objek (YOLO)", "Klasifikasi Gambar"])
 
