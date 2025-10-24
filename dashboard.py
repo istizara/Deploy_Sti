@@ -25,8 +25,7 @@ yolo_model, classifier = load_models()
 
 
 # --- SHARED ON ALL PAGES ---
-st.logo("assets/codingisfun_logo.png")
-
+st.logo("Logo.png")
 
 def add_bg_from_local(image_file):
     with open(image_file, "rb") as image:
