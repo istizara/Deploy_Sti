@@ -35,7 +35,7 @@ def hero_section():
         }
         .btn-start {
             background-color: #abbe99;
-            color: white;
+            color: soft green;
             padding: 0.6em 1.5em;
             border-radius: 10px;
             text-decoration: none;
