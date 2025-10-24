@@ -94,11 +94,10 @@ if uploaded_file is not None:
         # Prediksi
         prediction = classifier.predict(img_array)
         class_index = np.argmax(prediction)
-        st.write("### Hasil Prediksi:", class_index)
         st.write("Probabilitas:", np.max(prediction))
 
     # Label kelas sesuai urutan training model kamu 
-    labels = ["Healthy", "Common Rust", "Blight", "Grey Spot Leaf"] 
+    labels = ["Blight", "Common Rust", "Grey Spot Leaf", "Healthy"] 
     predicted_label = labels[class_index] 
     st.markdown(f"### 🌿 Hasil Prediksi: **{predicted_label}**") 
     st.markdown(f"**Probabilitas:** {confidence:.4%}") 
