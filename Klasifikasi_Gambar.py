@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 from tensorflow.keras.preprocessing import image
 import tensorflow as tf
+from ultralytics import YOLO
 from PIL import Image
 
 # ==========================
