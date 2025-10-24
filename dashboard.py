@@ -102,7 +102,4 @@ if uploaded_file is not None:
     predicted_label = labels[class_index] 
     st.markdown(f"### 🌿 Hasil Prediksi: **{predicted_label}**") 
     st.markdown(f"**Probabilitas:** {confidence:.4%}") 
-    
-    except ValueError as e: 
-    st.error(f"Terjadi kesalahan saat memproses gambar: {e}") 
-    st.info(f"Pastikan ukuran input gambar sesuai dengan model (input shape: {classifier.input_shape})")
+
