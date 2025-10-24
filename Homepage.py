@@ -18,7 +18,7 @@ def hero_section():
         """
         <style>
         .stApp {
-            background-color: #abbe99;
+            background-color: #dadbb1;
             background-attachment: fixed;
             background-size: cover;
         }
@@ -62,9 +62,7 @@ def about_section():
     st.header("Tentang Proyek")
     st.write("""
     Website ini dikembangkan untuk membantu petani, peneliti, dan mahasiswa dalam mendeteksi serta 
-    mengklasifikasi penyakit pada daun jagung menggunakan teknologi **Computer Vision** dan **Deep Learning**.
-    
-    Sistem ini mampu mengenali beberapa jenis penyakit berdasarkan gambar daun jagung yang diunggah pengguna.
+    mengklasifikasi penyakit pada daun jagung menggunakan teknologi **Computer Vision** dan **Deep Learning**. 
     """)
 
 # ===========================
@@ -118,7 +116,7 @@ def how_to_use():
     st.markdown("""
     1. **Buka Sidebar** di sisi kiri layar.
     2. Pilih salah satu fitur utama:
-        - 🟢 **Object Detection** — untuk mendeteksi area daun yang terinfeksi penyakit.
+        - 🟢 **Deteksi Gambar** — untuk mendeteksi area daun yang terinfeksi penyakit.
         - 🟡 **Klasifikasi Gambar** — untuk mengenali jenis penyakit berdasarkan gambar daun jagung.
     3. Ikuti panduan penggunaan di bawah sesuai fitur yang anda pilih.
     """)
@@ -166,7 +164,7 @@ def footer():
     st.markdown("""
     **Dibuat oleh:** Isti Kamila Nanda Zahra
     **Program Studi:** Statistika, Universitas Syiah Kuala  
-    **© 2025 Corn Disease Detection for Smart Farming**
+    **© 2025**
     """)
 
 # ===========================
