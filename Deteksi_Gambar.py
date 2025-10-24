@@ -53,3 +53,8 @@ def object_detection_page():
 
                 # Bersihkan file sementara
                 os.remove(temp_file.name)
+# ==========================
+# Jalankan fungsi agar halaman tampil
+# ==========================
+if __name__ == "__main__":
+    object_detection_page()
