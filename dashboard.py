@@ -23,13 +23,7 @@ yolo_model, classifier = load_models()
 # UI
 # ==========================
 
-color_samples = [
-    (255, 255, 0),   # Yellow – bright and contrasts well with black
-    (0, 255, 255),   # Cyan – highly visible, clean contrast
-    (255, 200, 100), # Light orange – warm and readable
-    (180, 255, 180), # Pale green – soft and effective
-    (255, 128, 255), # Light magenta – vibrant but not dark
-]
+set_background('./background.jpg')
 
 st.set_page_config(
     page_title="Dashboard Prediksi Gambar",
