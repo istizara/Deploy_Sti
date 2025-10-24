@@ -92,7 +92,6 @@ img_array = image.img_to_array(img_resized)
 img_array = np.expand_dims(img_array, axis=0)
 img_array = img_array.astype("float32") / 255.0
 
-```
 try:
     # --- Tahap 1: Validasi apakah gambar mirip daun jagung ---
     detection_result = yolo_model(img)
