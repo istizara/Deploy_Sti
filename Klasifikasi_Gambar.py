@@ -7,7 +7,7 @@ import numpy as np
 # ==========================
 # 🔧 Load Model
 # ==========================
-MODEL_PATH = "Isti_Laporan_2.h5"
+MODEL_PATH = "model/Isti_Laporan_2.h5"
 model = load_model(MODEL_PATH)
 
 # Daftar label kelas 
