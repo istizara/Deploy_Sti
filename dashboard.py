@@ -58,8 +58,10 @@ menu = st.sidebar.selectbox("Pilih Mode:", ["Deteksi Objek (YOLO)", "Klasifikasi
 uploaded_file = st.file_uploader("Unggah Gambar", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
-    img = Image.open(uploaded_file)
-    st.image(img, caption="Gambar yang Diupload", use_container_width=True)
+    img = Image.open(uploaded_file).convert("RGB")
+    st.image(img, caption="Gambar yang diupload", use_column_width=True)
+
+    st.write("Sedang memproses...")
 
     if menu == "Deteksi Objek (YOLO)":
         # Deteksi objek
@@ -69,13 +71,25 @@ if uploaded_file is not None:
 
     elif menu == "Klasifikasi Gambar":
        # Preprocessing
-        img_resized = img.resize((224, 224))  # sesuaikan ukuran dengan model kamu
-        img_array = image.img_to_array(img_resized)
+    def preprocess_image(img):
+        img = img.resize((224, 224))  # ubah sesuai ukuran input model Anda
+        img_array = image.img_to_array(img)
         img_array = np.expand_dims(img_array, axis=0)
-        img_array = img_array / 255.0
+        img_array = img_array / 255.0  # normalisasi (jika model dilatih dengan skala ini)
+        return img_array
+
 
         # Prediksi
-        prediction = classifier.predict(img_array)
-        class_index = np.argmax(prediction)
-        st.write("### Hasil Prediksi:", class_index)
-        st.write("Probabilitas:", np.max(prediction))
+    img_array = preprocess_image(img)
+    preds = model.predict(img_array)
+
+    # --- Tampilkan hasil ---
+    predicted_class = np.argmax(preds, axis=1)[0]
+    st.success(f"Hasil klasifikasi: **Kelas {predicted_class}**")
+
+    # Jika punya nama kelas:
+    class_names = ['Healthy', 'Common Rust', 'Blight', 'Grey Spot Leaf']
+    st.success(f"Hasil klasifikasi: {class_names[predicted_class]}")
+
+    st.write("Probabilitas tiap kelas:")
+    st.write(preds)
