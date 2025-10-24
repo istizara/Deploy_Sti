@@ -14,12 +14,16 @@ Homepage = st.Page(
     icon=":material/account_circle:",
     default=True,
 )
-
+Object_detection_page = st.Page(
+    "Deteks_Gambar.py",
+    title="Deteksi Gambar",
+    icon=":material/bar_chart:",
+)
 # --- NAVIGATION SETUP [WITH SECTIONS]---
 pg = st.navigation(
     {
         "Info": [Homepage],
-         "Projects" : []
+         "Projects" : [Object_detection_page]
     }
 )
 
