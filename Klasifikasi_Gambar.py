@@ -45,30 +45,30 @@ if uploaded_file is not None:
                     # ================================
                     detection_result = yolo_model(img)
                     labels_detected = [int(box.cls) for box in detection_result[0].boxes]
-                    if len(labels_detected) == 0:
-                        st.markdown(
-                           """
-                        <div style="
-                            background-color: #fff3cd;
-                            color: #856404;
-                            padding: 10px 90px;
-                            border-radius: 12px;
-                            border: 1px solid #ffeeba;
-                            font-size: 16px;
-                            text-align: justify;
-                            margin-top: 25px;
-                            margin-bottom: 10px;
-                            width: 90%;
-                            margin-left: auto;
-                            margin-right: auto;
-                            box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-                        ">
-                        ⚠️ <b>Gambar yang diunggah tidak terdeteksi sebagai daun jagung.</b><br><br>
-                        Silakan unggah gambar daun jagung yang valid agar sistem dapat mengenali dan mengklasifikasikan penyakit secara akurat.
-                        </div>
-                        """,
-                        unsafe_allow_html=True
-                        )
+     if len(labels_detected) == 0:
+         st.markdown(
+         """
+         <div style="
+              background-color: #fff3cd;
+              color: #856404;
+              padding: 30px 20px;
+              border-radius: 12px;
+              border: 1px solid #ffeeba;
+              font-size: 16px;
+              text-align: justify;
+              margin-top: 25px;
+              margin-bottom: 10px;
+              width: 90%;
+              margin-left: auto;
+              margin-right: auto;
+              box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+         ">
+         ⚠️ <b>Gambar yang diunggah tidak terdeteksi sebagai daun jagung.</b><br><br>
+         Silakan unggah gambar daun jagung yang valid agar sistem dapat mengenali dan mengklasifikasikan penyakit secara akurat.
+         </div>
+         """
+             unsafe_allow_html=True
+             )
 
                     else:
                         # ================================
