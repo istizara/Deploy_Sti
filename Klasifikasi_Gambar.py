@@ -28,7 +28,8 @@ uploaded_file = col1.file_uploader("📤 Unggah gambar daun jagung", type=["jpg"
 
 if uploaded_file is not None:
     img = Image.open(uploaded_file).convert("RGB")
-    col1.image(img, caption="Gambar yang diunggah", use_column_width=True)
+    col1.image(img, caption="Gambar yang diunggah", use_container_width=True)
+
 
     run_button = col2.button("🧠 Jalankan Prediksi")
 
