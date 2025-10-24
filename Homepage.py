@@ -71,19 +71,19 @@ def disease_section():
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.image("Corn_Health(99).jpg", use_container_width=True)
+        st.image("Corn_Health (99).jpg", use_container_width=True)
         st.subheader("Healthy")
         st.caption("Daun hijau segar tanpa bercak.")
     with col2:
-        st.image("Corn_Blight(947).JPG", use_container_width=True)
+        st.image("Corn_Blight (947).JPG", use_container_width=True)
         st.subheader("Blight")
         st.caption("Bercak coklat memanjang di permukaan daun.")
     with col3:
-        st.image("Corn_Common_Rust(900)", use_container_width=True)
+        st.image("Corn_Common_Rust (900)", use_container_width=True)
         st.subheader("Common Rust")
         st.caption("Bercak jingga kekuningan kecil.")
     with col4:
-        st.image("Cor_Gray_Spot(496).JPG", use_container_width=True)
+        st.image("Cor_Gray_Spot (496).JPG", use_container_width=True)
         st.subheader("Gray Leaf Spot")
         st.caption("Bercak persegi panjang abu-abu pada daun.")
 
