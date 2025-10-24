@@ -28,7 +28,7 @@ if uploaded_file is not None:
     # ==========================
     # Layout dua kolom
     # ==========================
-    col1, col2 = st.columns([1.2.3])
+    col1, col2 = st.columns([1.2, 1])
 
     with col1:
         st.image(img, caption="🖼️ Uploaded Image", use_container_width=True)
