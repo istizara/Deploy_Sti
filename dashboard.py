@@ -96,9 +96,5 @@ if uploaded_file is not None:
         class_index = np.argmax(prediction)
         st.write("### Hasil Prediksi:", class_index)
         st.write("Probabilitas:", np.max(prediction))
-    
-    except ValueError as e:
-        st.error(f"Terjadi kesalahan saat memproses gambar: {e}")
-        st.info(f"Pastikan ukuran input gambar sesuai dengan model (input shape: {classifier.input_shape})")
-    ```
+
 
