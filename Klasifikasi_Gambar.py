@@ -51,26 +51,6 @@ if uploaded_file is not None:
                     valid_detections = [c for c in conf_scores if c > 0.5]  # threshold 50%
 
                     if len(valid_detections) == 0:
-                        # Tidak ada daun jagung dengan confidence cukup tinggi
-                        st.markdown(
-                            """
-                            <div style="
-                                background-color: #FFF3CD;
-                                color: #856404;
-                                padding: 15px;
-                                border-radius: 10px;
-                                border: 1px solid #FFEeba;
-                                font-size: 16px;
-                                text-align: justify;
-                                width: 100%;
-                            ">
-                            ⚠️ <b>Gambar yang diunggah tidak terdeteksi sebagai daun jagung.</b><br>
-                            Silakan unggah gambar daun jagung yang valid agar sistem dapat mengklasifikasikan dengan akurat.
-                            </div>
-                            """,
-                            unsafe_allow_html=True
-                        )
-
                         # Simpan status agar muncul di hasil klasifikasi
                         st.session_state["hasil_prediksi"] = {
                             "label": "Tidak terdeteksi daun jagung",
