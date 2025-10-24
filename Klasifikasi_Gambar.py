@@ -51,7 +51,7 @@ if uploaded_file is not None:
                         <div style="
                             background-color: #fff3cd;
                             color: #856404;
-                            padding: 20px 30px;
+                            padding: 20px 70px;
                             border-radius: 12px;
                             border: 1px solid #ffeeba;
                             font-size: 16px;
