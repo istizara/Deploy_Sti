@@ -100,25 +100,59 @@ def features_section():
     """)
 
 # ===========================
-# Fungsi: Cara Menggunakan
+# Fungsi: Cara Menggunakan Website
 # ===========================
 def how_to_use():
-    st.header("Cara Menggunakan")
-    st.write("Ikuti 3 langkah sederhana berikut untuk mendeteksi penyakit daun jagung:")
+    st.header("Cara Menggunakan Website")
+    st.write("""
+    Website ini memiliki dua fitur utama untuk membantu Anda mengenali penyakit pada daun jagung 
+    menggunakan teknologi **Artificial Intelligence (AI)**, yaitu *Deteksi Gambar* dan *Klasifikasi Gambar*.
+    """)
+
+    # Langkah umum
+    st.subheader("Langkah Umum")
+    st.markdown("""
+    1. **Buka Sidebar** di sisi kiri layar Anda.
+    2. Pilih salah satu fitur utama:
+        - 🟢 **Object Detection** — untuk mendeteksi area daun yang terinfeksi penyakit.
+        - 🟡 **Klasifikasi Gambar** — untuk mengenali jenis penyakit berdasarkan gambar daun jagung.
+    3. Ikuti panduan penggunaan di bawah sesuai fitur yang Anda pilih.
+    """)
+
+    # Object Detection
+    st.divider()
+    st.subheader("🟢 Deteksi Gambar")
+    st.markdown("""
+    Fitur ini digunakan untuk **mendeteksi area pada daun jagung yang menunjukkan gejala penyakit**.
     
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.image("images/upload.png", use_container_width=True)
-        st.subheader("1. Upload Gambar")
-        st.caption("Unggah citra daun jagung yang ingin dideteksi.")
-    with col2:
-        st.image("images/detect.png", use_container_width=True)
-        st.subheader("2. Proses AI")
-        st.caption("Model AI akan mendeteksi dan mengklasifikasi penyakit.")
-    with col3:
-        st.image("images/result.png", use_container_width=True)
-        st.subheader("3. Lihat Hasil")
-        st.caption("Tampilkan hasil deteksi lengkap dengan tingkat akurasi.")
+    **Langkah-langkah:**
+    1. Klik menu *Object Detection* di sidebar.
+    2. Unggah gambar daun jagung dalam format `.jpg` atau `.png`.
+    3. Tunggu beberapa detik hingga proses pendeteksian selesai.
+    4. Hasil berupa gambar dengan kotak (bounding box) yang menandai area daun terinfeksi akan muncul di layar.
+    """)
+
+    # Klasifikasi Gambar
+    st.divider()
+    st.subheader("🟡 Klasifikasi Gambar")
+    st.markdown("""
+    Fitur ini digunakan untuk **mengidentifikasi jenis penyakit daun jagung** menggunakan model klasifikasi citra.
+
+    **Langkah-langkah:**
+    1. Klik menu *Klasifikasi Gambar* di sidebar.
+    2. Unggah gambar daun jagung yang ingin dianalisis.
+    3. Tunggu hingga proses klasifikasi selesai.
+    4. Hasil akan menampilkan:
+        - Jenis penyakit (misal: *Common Rust*, *Gray Leaf Spot*, *Blight*, atau *Healthy*).
+        - Persentase tingkat kepercayaan model terhadap hasil klasifikasi.
+    """)
+
+    # Tips tambahan
+    st.divider()
+    st.info("""
+    💡 **Tips:** Pastikan gambar daun jagung memiliki pencahayaan yang baik, fokus pada daun, 
+    dan tidak terlalu banyak gangguan latar belakang agar hasil deteksi dan klasifikasi lebih akurat.
+    """)
 
 # ===========================
 # Fungsi: Statistik Model
