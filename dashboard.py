@@ -78,16 +78,14 @@ if uploaded_file is not None:
 
 
         # Prediksi
-    img_array = preprocess_image(img)
-    preds = model.predict(img_array)
+        # Preprocessing
+        img_resized = img.resize((224, 224))  # sesuaikan ukuran dengan model kamu
+        img_array = image.img_to_array(img_resized)
+        img_array = np.expand_dims(img_array, axis=0)
+        img_array = img_array / 255.0
 
-    # --- Tampilkan hasil ---
-    predicted_class = np.argmax(preds, axis=1)[0]
-    st.success(f"Hasil klasifikasi: **Kelas {predicted_class}**")
-
-    # Jika punya nama kelas:
-    class_names = ['Healthy', 'Common Rust', 'Blight', 'Grey Spot Leaf']
-    st.success(f"Hasil klasifikasi: {class_names[predicted_class]}")
-
-    st.write("Probabilitas tiap kelas:")
-    st.write(preds)
+        # Prediksi
+        prediction = classifier.predict(img_array)
+        class_index = np.argmax(prediction)
+        st.write("### Hasil Prediksi:", class_index)
+        st.write("Probabilitas:", np.max(prediction))
