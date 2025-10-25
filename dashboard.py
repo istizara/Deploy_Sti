@@ -5,13 +5,26 @@ import streamlit as st
 # ==========================
 
 # --- CUSTOM BACKGROUND COLOR (apply to all pages) ---
-# ==========================
-# Custom Background + Sidebar Style
-# ==========================
 page_bg = """
 <style>
 /* Warna latar seluruh halaman */
 [data-testid="stAppViewContainer"] {
+    background-color: #cfe1b9;
+}
+
+/* Warna latar area konten utama */
+[data-testid="stAppViewContainer"] > .main {
+    background-color: #cfe1b9;
+}
+
+/* Warna latar area header di atas */
+[data-testid="stHeader"] {
+    background-color: #cfe1b9;
+    box-shadow: none; /* hilangkan garis bawah bayangan */
+}
+
+/* Warna latar kontainer isi */
+.block-container {
     background-color: #cfe1b9;
 }
 
@@ -54,7 +67,6 @@ page_bg = """
 }
 </style>
 """
-st.markdown(page_bg, unsafe_allow_html=True)
 
 # --- SHARED ON ALL PAGES ---
 st.logo("Logo.png")
