@@ -22,7 +22,7 @@ Object_detection_page = st.Page(
 Klassification_page = st.Page(
     "Klasifikasi_Gambar.py",
     title="Klasifikasi Gambar",
-    icon=":material/leaf:",
+    icon=":material/eco:",
 )
 # --- NAVIGATION SETUP [WITH SECTIONS]---
 pg = st.navigation(
