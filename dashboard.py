@@ -17,12 +17,12 @@ Homepage = st.Page(
 Object_detection_page = st.Page(
     "Deteksi_Gambar.py",
     title="Deteksi Gambar",
-    icon=":material/bar_chart:",
+    icon=":material/search:",
 )
 Klassification_page = st.Page(
     "Klasifikasi_Gambar.py",
     title="Klasifikasi Gambar",
-    icon=":material/smart_toy:",
+    icon=":material/leaf:",
 )
 # --- NAVIGATION SETUP [WITH SECTIONS]---
 pg = st.navigation(
