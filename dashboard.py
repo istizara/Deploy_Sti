@@ -5,35 +5,53 @@ import streamlit as st
 # ==========================
 
 # --- CUSTOM BACKGROUND COLOR (apply to all pages) ---
+# ==========================
+# Custom Background + Sidebar Style
+# ==========================
 page_bg = """
 <style>
-    /* Ubah warna background seluruh halaman */
-    [data-testid="stAppViewContainer"] {
-        background-color: #cfe1b9; 
-    }
+/* Warna latar seluruh halaman */
+[data-testid="stAppViewContainer"] {
+    background-color: #cfe1b9;
+}
 
-    /* Sidebar juga pakai warna yang sama */
-    [data-testid="stSidebar"] {
-        background-color: #98a77c; /* sedikit lebih gelap biar kontras */
-    }
+/* Sidebar warna lembut */
+[data-testid="stSidebar"] {
+    background-color: #98a77c;
+}
 
-    /* Card atau container tetap putih */
-    [data-testid="stHeader"], .st-emotion-cache-1r6slb0 {
-        background: none;
-    }
+/* Warna teks sidebar agar lebih kontras */
+[data-testid="stSidebar"] * {
+    color: #0c0c0f !important; 
+    font-weight: 500;
+}
 
-    /* Ubah warna tombol biar serasi */
-    .stButton>button {
-        background-color: #6da544;
-        color: white;
-        border-radius: 10px;
-        border: none;
-    }
+/* Saat fitur dipilih (aktif) */
+[data-testid="stSidebarNav"] a[aria-current="page"] {
+    background-color: #ffffff !important; /* putih */
+    color: #1b3d1b !important;
+    border-radius: 10px;
+    font-weight: 600;
+}
 
-    .stButton>button:hover {
-        background-color: #588a34;
-        color: #fff;
-    }
+/* Hover effect biar interaktif */
+[data-testid="stSidebarNav"] a:hover {
+    background-color: #dbe8c0 !important;
+    color: #1b3d1b !important;
+}
+
+/* Tombol serasi dengan tema */
+.stButton>button {
+    background-color: #6da544;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+.stButton>button:hover {
+    background-color: #588a34;
+    color: #fff;
+}
 </style>
 """
 st.markdown(page_bg, unsafe_allow_html=True)
