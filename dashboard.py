@@ -11,6 +11,10 @@ page_bg = """
     [data-testid="stAppViewContainer"] {
         background-color: #cfe1b9; 
     }
+    /* Card atau container tetap putih */
+        [data-testid="stHeader"], .st-emotion-cache-1r6slb0 {
+            background: none;
+    }
 
     /* Sidebar juga pakai warna yang sama */
     [data-testid="stSidebar"] {
